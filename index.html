@@ -3,38 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Encuentra tu Cargador</title>
-  <link rel="stylesheet" href="Styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+  <title>Lectro ⚡</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="icon" type="image/png" href="assets/Medalla_Faro.png" />
 </head>
 <body>
-
 <header>
-  <h1>⚡ Encuentra tu Cargador</h1>
+  <h1>🔋 Lectro</h1>
+  <div id="profileMenu" class="hidden">
+    <button id="profileButton">👤</button>
+    <div id="profileDropdown" class="hidden">
+      <p id="profileName"></p>
+      <ul>
+        <li><button onclick="showReservationHistory()">Historial de Reservas</button></li>
+        <li><button onclick="changePassword()">Cambiar Contraseña</button></li>
+        <li><button onclick="toggleTheme()">Cambiar Tema</button></li>
+        <li><button onclick="logout()">Cerrar Sesión</button></li>
+      </ul>
+    </div>
+  </div>
 </header>
 
-<section id="home">
-  <img src="img/coche-electrico.jpg" alt="Coche eléctrico cargando" id="carImage">
-  <button onclick="startApp()">Empezar</button>
-</section>
-
-<section id="mapSection" class="hidden">
-  <div id="map"></div>
-  <div id="infoPanel">
-    <h2>Cargadores Cercanos</h2>
-    <select id="filter" onchange="filterChargers()">
-      <option value="todos">Todos</option>
-      <option value="rapido">Rápido</option>
-      <option value="estandar">Estándar</option>
-    </select>
-    <button onclick="getUserLocation()">📍 Mi Ubicación</button>
-    <p id="chargerDetails">Selecciona un cargador en el mapa.</p>
-    <button id="reserveButton" onclick="reserveCharger()">Reservar</button>
+<main>
+  <div id="loginOptions">
+    <h2>Bienvenido</h2>
+    <button onclick="showLoginForm()">Iniciar Sesión</button>
+    <button onclick="showRegisterForm()">Crear Cuenta</button>
   </div>
-</section>
 
+  <div id="login" class="hidden">
+    <h2>Iniciar Sesión</h2>
+    <input type="text" id="username" placeholder="Nombre de Usuario">
+    <input type="password" id="password" placeholder="Contraseña">
+    <button onclick="login()">Iniciar Sesión</button>
+    <p id="loginError" class="error"></p>
+  </div>
+
+  <div id="register" class="hidden">
+    <h2>Crear Cuenta</h2>
+    <input type="text" id="newUsername" placeholder="Nombre de Usuario">
+    <input type="password" id="newPassword" placeholder="Contraseña">
+    <input type="password" id="confirmPassword" placeholder="Confirmar Contraseña">
+    <button onclick="register()">Crear Cuenta</button>
+    <p id="registerError" class="error"></p>
+  </div>
+
+  <div id="mapSection" class="hidden">
+    <h2>Mapa de Cargadores</h2>
+    <div id="map"></div>
+  </div>
+
+  <div id="reservationHistory" class="hidden">
+    <h3>Historial de Reservas</h3>
+    <ul id="reservationList"></ul>
+    <button onclick="closeReservationHistory()">Cerrar</button>
+  </div>
+
+  <!-- Modal para la selección del tiempo -->
+  <div id="reservationModal" class="hidden">
+    <div class="modal-content">
+      <h2>Reservar Cargador</h2>
+      <p>Selecciona el tiempo de uso (máximo 2 horas):</p>
+      <input type="number" id="reservationTime" min="1" max="2" value="1" /> horas
+      <button onclick="simulatePayment()">Simular Pago</button>
+      <button onclick="closeReservationModal()">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Modal para el resumen del pago -->
+  <div id="paymentSummaryModal" class="hidden">
+    <div class="modal-content">
+      <h2>Resumen del Pago</h2>
+      <p id="paymentSummary"></p>
+      <button onclick="confirmReservation()">Confirmar</button>
+      <button onclick="closePaymentSummaryModal()">Cancelar</button>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2025 Lectro</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
-
