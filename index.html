@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encuentra tu Cargador</title>
+  <link rel="stylesheet" href="Styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+</head>
+<body>
+
+<header>
+  <h1>⚡ Encuentra tu Cargador</h1>
+</header>
+
+<section id="home">
+  <img src="img/coche-electrico.jpg" alt="Coche eléctrico cargando" id="carImage">
+  <button onclick="startApp()">Empezar</button>
+</section>
+
+<section id="mapSection" class="hidden">
+  <div id="map"></div>
+  <div id="infoPanel">
+    <h2>Cargadores Cercanos</h2>
+    <select id="filter" onchange="filterChargers()">
+      <option value="todos">Todos</option>
+      <option value="rapido">Rápido</option>
+      <option value="estandar">Estándar</option>
+    </select>
+    <button onclick="getUserLocation()">📍 Mi Ubicación</button>
+    <p id="chargerDetails">Selecciona un cargador en el mapa.</p>
+    <button id="reserveButton" onclick="reserveCharger()">Reservar</button>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
+
